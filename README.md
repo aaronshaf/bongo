@@ -8,7 +8,7 @@ It is [tested](http://aaronshaf.github.io/bongo.js/) in Chrome 27, Chrome 29, Fi
 
 ## Features
 
-* Insert, save, remove, find, findOne
+* Insert, save, remove, find, findOneid
 * Comparison query operators ($all, $lt, $lte, $gt, $gte, $in, $nin)
 * Mongo-esque key generator (on _id)
 * Pick, limit, skip
@@ -60,7 +60,7 @@ bongo.db('acme').collection('users').insert({
 bongo.db('acme').collection('users').insertMulti([
     { name: "John Doe", email: "john@domain.com" }
   , { name: "Smith", email: "smith@domain.com" }
-  ],function(error,id) {
+  ],function(error,ids) {
   if(!error) {
     // success
   }
