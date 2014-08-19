@@ -8,7 +8,7 @@ It is [tested](http://aaronshaf.github.io/bongo.js/) in Chrome 27, Chrome 29, Fi
 
 ## Features
 
-* Insert, save, remove, find, findOneid
+* Insert, inserMulti, save, remove, find, findOne
 * Comparison query operators ($all, $lt, $lte, $gt, $gte, $in, $nin)
 * Mongo-esque key generator (on _id)
 * Pick, limit, skip
