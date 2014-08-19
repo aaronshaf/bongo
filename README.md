@@ -54,7 +54,19 @@ bongo.db('acme').collection('users').insert({
 }
 });
 ```
+### insertMulti
 
+```javascript
+bongo.db('acme').collection('users').insertMulti([
+    { name: "John Doe", email: "john@domain.com" }
+  , { name: "Smith", email: "smith@domain.com" }
+  ],function(error,id) {
+  if(!error) {
+    // success
+  }
+}
+});
+```
 ### save
 
 ```javascript
