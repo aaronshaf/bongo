@@ -365,6 +365,38 @@ var bongo;
                 };
             }, true);
         };
+        ObjectStore.prototype.insertMulti = function(data, callback) {
+          if (typeof callback === "undefined") { 
+            callback = function () {}; 
+          }
+          var _this = this;
+          this.database.get(function (database) {
+            var transaction = database.transaction([
+              _this.name
+            ], "readwrite");
+            var objectStore = transaction.objectStore(_this.name);
+            var i = 0, ids = [], request;
+            function putNext(event) {
+              if (event) {
+                ids.push(event.target.result);
+              }
+              if (i < data.length) {
+                if (!data[i]._id) {
+                  data[i]._id = bongo.key();
+                }
+                request = objectStore.add(data[i]);
+                request.onsuccess = putNext;
+                request.onerror = function (event) {
+                  console.log(event.target.error);
+                };
+                i++;
+              } else {
+                callback(false, ids);
+              }
+            }
+            putNext();
+          }, true);
+        };
         ObjectStore.prototype.oldFind = function (options, callback) {
             var _this = this;
             var criteria = options.criteria || {};
